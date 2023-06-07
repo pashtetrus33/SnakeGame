@@ -1,4 +1,4 @@
-package com.snakegame;
+package com.snakegame.models;
 
 import java.awt.*;
 
@@ -7,19 +7,19 @@ public class Cell {
     private int size;
     private Color color;
 
-    public Cell(int x, int y, int size, Color color){
+    public Cell(int x, int y, int size, Color color) {
         set(x, y);
         setSize(size);
         setColor(color);
     }
 
-    public int getX() {
-        return x;
-    }
-
     public void set(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public int getX() {
+        return x;
     }
 
     public int getY() {

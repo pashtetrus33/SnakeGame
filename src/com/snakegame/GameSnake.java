@@ -1,5 +1,9 @@
 package com.snakegame;
 
+import com.snakegame.models.Food;
+import com.snakegame.models.Poison;
+import com.snakegame.models.Snake;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -8,27 +12,26 @@ import java.awt.event.KeyEvent;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class GameSnake extends JFrame {
-    private static final int WIN_LEVEL = 3;
+    private static final int WIN_LEVEL = 19;
     final String TITLE_OF_PROGRAM = "Classic Game Snake";
-    final String GAME_OVER_MSG = "GAME OVER";
-    final static int CELL_SIZE = 20;           // size of cell in pix
-    final static int CANVAS_WIDTH = 30;        // width in cells
-    final static int CANVAS_HEIGHT = 25;       // height in cells
-    final static Color SNAKE_COLOR = Color.darkGray;
-    final static Color FOOD_COLOR = Color.green;
-    final static Color POISON_COLOR = Color.red;
-    final static int KEY_LEFT = 37;            // codes
-    final static int KEY_UP = 38;              //   of
-    final static int KEY_RIGHT = 39;           //   cursor
-    final static int KEY_DOWN = 40;            //   keys
+    public final static int CELL_SIZE = 20;           // size of cell in pix
+    public final static int CANVAS_WIDTH = 30;        // width in cells
+    public final static int CANVAS_HEIGHT = 25;       // height in cells
+    public final static Color SNAKE_COLOR = Color.darkGray;
+    public final static Color FOOD_COLOR = Color.green;
+    public final static Color POISON_COLOR = Color.red;
+    public final static int KEY_LEFT = 37;            // codes
+    public final static int KEY_UP = 38;              //   of
+    public final static int KEY_RIGHT = 39;           //   cursor
+    public final static int KEY_DOWN = 40;            //   keys
     final int START_SNAKE_SIZE = 5;            // initialization data
     final int START_SNAKE_X = CANVAS_WIDTH / 2;  //   for
     final int START_SNAKE_Y = CANVAS_HEIGHT / 2; //   snake
     final int CHANGE_LEVEL_SNAKE_SIZE = 8; // size for next level (delay degrease)
-    int snake_delay = 150; // snake delay in milliseconds
+    int snake_delay = 200; // snake delay in milliseconds
     int game_level = 1; // game level
     int snakeSize = 0;                         // current snake size
-    static boolean gameOver = false;           // a sign game is over or not
+    public static boolean gameOver = false;           // a sign game is over or not
 
     Canvas canvas;                   // canvas object for rendering (drawing)
     Snake snake;                     // declare a snake object
@@ -42,7 +45,6 @@ public class GameSnake extends JFrame {
     public GameSnake() {
         setTitle(TITLE_OF_PROGRAM);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         canvas = new Canvas();
         canvas.setBackground(Color.WHITE);
         canvas.setPreferredSize(new Dimension(CELL_SIZE * CANVAS_WIDTH,

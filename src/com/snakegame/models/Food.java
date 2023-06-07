@@ -1,13 +1,15 @@
-package com.snakegame;
+package com.snakegame.models;
+
+import com.snakegame.GameSnake;
 
 import java.util.Random;
 
-public class Poison extends Cell{
+public class Food extends Cell {
     private Random random;
     private Snake snake;
 
-    public Poison(Snake snake) {
-        super(-1, -1, GameSnake.CELL_SIZE, GameSnake.POISON_COLOR);
+    public Food(Snake snake) {
+        super(-1, -1, GameSnake.CELL_SIZE, GameSnake.FOOD_COLOR);
         random = new Random();
         this.snake = snake;
     }
@@ -29,7 +31,7 @@ public class Poison extends Cell{
         set(-1, -1);
     }
 
-    public boolean isPoison(int x, int y) {
+    public boolean isFood(int x, int y) {
         return (getX() == x && getY() == y);
     }
 }

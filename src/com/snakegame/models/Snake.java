@@ -1,4 +1,6 @@
-package com.snakegame;
+package com.snakegame.models;
+
+import com.snakegame.GameSnake;
 
 import java.awt.*;
 import java.util.LinkedList;
