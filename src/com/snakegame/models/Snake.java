@@ -13,13 +13,13 @@ public class Snake {
 
     public Snake(int x, int y, int length, int direction) {
         snake = new LinkedList<>();
-        for(int i = 0; i < length; i++){
-            snake.add(new Cell(x-i, y, GameSnake.CELL_SIZE, GameSnake.SNAKE_COLOR));
+        for (int i = 0; i < length; i++) {
+            snake.add(new Cell(x - i, y, GameSnake.CELL_SIZE, GameSnake.SNAKE_COLOR));
         }
         this.direction = direction;
     }
 
-    public int size(){
+    public int size() {
         return snake.size();
     }
 
@@ -35,31 +35,48 @@ public class Snake {
         int x = snake.getFirst().getX();
         int y = snake.getFirst().getY();
         switch (direction) {
-            case GameSnake.KEY_LEFT: x--;
+            case GameSnake.KEY_LEFT:
+                x--;
                 if (x < 0)
                     x = GameSnake.CANVAS_WIDTH - 1;
                 break;
-            case GameSnake.KEY_RIGHT: x++;
+            case GameSnake.KEY_RIGHT:
+                x++;
                 if (x == GameSnake.CANVAS_WIDTH)
                     x = 0;
                 break;
-            case GameSnake.KEY_UP: y--;
+            case GameSnake.KEY_UP:
+                y--;
                 if (y < 0)
                     y = GameSnake.CANVAS_HEIGHT - 1;
                 break;
-            case GameSnake.KEY_DOWN: y++;
+            case GameSnake.KEY_DOWN:
+                y++;
                 if (y == GameSnake.CANVAS_HEIGHT)
                     y = 0;
                 break;
         }
-        if (isInSnake(x, y) ||           // if the snake crosses itself
-                poison.isPoison(x, y)) { // or if it eats poison
+//        if (isInSnake(x, y) ||           // if the snake crosses itself
+//                poison.isPoison(x, y)) { // or if it eats poison
+//            GameSnake.gameOver = true;
+//            return;
+        //       }
+        if (isInSnake(x, y)) {
             GameSnake.gameOver = true;
             return;
         }
         snake.addFirst(new Cell(x, y, GameSnake.CELL_SIZE, GameSnake.SNAKE_COLOR)); // new head of snake
         if (food.isFood(x, y)) {
             food.eat();
+        } else if (poison.isPoison(x, y)) {
+            poison.eat();
+            snake.removeLast();
+            snake.removeLast();
+            if (snake.size() == 0) {
+                GameSnake.gameOver = true;
+                return;
+            }
+
         } else {
             snake.removeLast();
         }
@@ -91,6 +108,7 @@ public class Snake {
     public void setFood(Food food) {
         this.food = food;
     }
+
     public void setPoison(Poison poison) {
         this.poison = poison;
     }

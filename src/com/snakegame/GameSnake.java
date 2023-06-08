@@ -28,9 +28,9 @@ public class GameSnake extends JFrame {
     final int START_SNAKE_X = CANVAS_WIDTH / 2;  //   for
     final int START_SNAKE_Y = CANVAS_HEIGHT / 2; //   snake
     final int CHANGE_LEVEL_SNAKE_SIZE = 8; // size for next level (delay degrease)
-    int snake_delay = 200; // snake delay in milliseconds
-    int game_level = 1; // game level
-    int snakeSize = 0;                         // current snake size
+    public static int snake_delay = 200; // snake delay in milliseconds
+    public static int game_level = 1; // game level
+    public static int snakeSize = 0;                         // current snake size
     public static boolean gameOver = false;           // a sign game is over or not
 
     Canvas canvas;                   // canvas object for rendering (drawing)
@@ -79,7 +79,7 @@ public class GameSnake extends JFrame {
 
         while (!gameOver) {
             snake.move();
-            if (snake.size() > snakeSize) {
+            if (snake.size() != snakeSize) {
                 snakeSize = snake.size();
                 setTitle(TITLE_OF_PROGRAM + ": Level " + game_level + " Count " + snakeSize);
             }
